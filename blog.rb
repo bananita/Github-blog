@@ -5,8 +5,12 @@ require 'github/markdown'
 require 'open-uri'
 
 get '/' do
-  if File.exist?("timestamp")
-    timestamp = File.read("timestamp").to_i
+  unless File.directory?("cache")
+    FileUtils.mkdir("cache")
+  end
+
+  if File.exist?("cache/timestamp")
+    timestamp = File.read("cache/timestamp").to_i
   else 
     timestamp = 0
   end
@@ -24,12 +28,12 @@ get '/' do
       open(url) do |f|
         @content += GitHub::Markdown.render_gfm(f.read())
       end
-      File.open("yourfile", 'w') { |file| file.write(@content) }
-      File.open("timestamp", 'w') { |file| file.write(Time.now.to_i.to_s) }
+      File.open("cache/main_cache", 'w') { |file| file.write(@content) }
+      File.open("cache/timestamp", 'w') { |file| file.write(Time.now.to_i.to_s) }
     end
   else 
     puts "getting data from cache"
-    @content = File.read("yourfile")
+    @content = File.read("cache/main_cache")
   end
   
   
