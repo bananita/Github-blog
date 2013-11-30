@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    expires_in 30.minutes, :public => true
     Octokit.configure do |c|
       c.login = 'bananita'
       c.password = 'g6GHx0gNXid*Js3'
