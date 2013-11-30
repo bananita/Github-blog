@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'octokit'
-
-Octokit.contents("bananita/SOMANYAPPS-BLOG-CONTENT").each do |c| puts c.attrs[:_links][:html] end
