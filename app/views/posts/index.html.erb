@@ -1,4 +1,4 @@
-<h1>Listing posts</h1>
+<h1>SO MANY APPS Blog</h1>
 
 <table>
   <thead>
@@ -11,14 +11,7 @@
   </thead>
 
   <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.content %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <%= render inline: @content %>
   </tbody>
 </table>
 

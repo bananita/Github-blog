@@ -1,10 +1,31 @@
+require 'octokit'
+require 'github/markdown'
+require 'open-uri'
+
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    Octokit.configure do |c|
+      c.login = 'bananita'
+      c.password = 'g6GHx0gNXid*Js3'
+    end
+
+    @content = ""
+    
+    Octokit.contents("bananita/SOMANYAPPS-BLOG-CONTENT").each do |c|
+      url = c.attrs[:_links][:html]
+      
+      url["github.com"] = "raw.github.com"
+      url["/blob/"] = "/"
+      
+      open(url) do |f|
+        @content += GitHub::Markdown.render_gfm(f.read())
+      end
+    end
+   
   end
 
   # GET /posts/1
