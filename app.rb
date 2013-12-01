@@ -4,7 +4,7 @@ require 'octokit'
 require 'github/markdown'
 require 'open-uri'
 
-post 'post-receive-hook' do
+post '/post-receive-hook' do
   unless File.directory?("cache")
     FileUtils.mkdir("cache")
   end
