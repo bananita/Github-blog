@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20131201214007) do
 
   create_table "articles", force: true do |t|
-    t.string "content"
+    t.text "content"
   end
 
 end
