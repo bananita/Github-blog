@@ -7,6 +7,9 @@ gem "sinatra-activerecord"
 gem 'sinatra-flash'
 gem 'sinatra-redirect-with-flash'
 
+gem 'octokit'
+gem 'github-markdown'
+
 group :development do
  gem 'sqlite3'
  gem "tux"
