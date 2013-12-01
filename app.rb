@@ -8,7 +8,7 @@ post '/post-receive-hook' do
   unless File.directory?("cache")
     FileUtils.mkdir("cache")
   end
-  
+  @content = ""
   Octokit.contents("bananita/SOMANYAPPS-BLOG-CONTENT").each do |c| 
     url = c.attrs[:_links][:html]
     
